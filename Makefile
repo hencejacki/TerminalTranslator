@@ -24,7 +24,7 @@ debug: prepare $(SRC)
 release: prepare $(SRC)
 	$(CC) $(CFLAGS_RELEASE) $(SRC) -o $(OUT) $(INCLUDE_DIR) $(LINK_OPTS)
 
-install: release
+install:
 	@if [ ! -d $(INSTALL_DIR)/bin ]; then \
 		mkdir -p $(INSTALL_DIR)/bin; \
 	fi

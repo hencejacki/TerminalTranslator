@@ -49,8 +49,6 @@ ttl [-s|-t|-h|...] [word]
 
 ## Future work
 
-[ ] /translate_file
-
-[ ] /detect
-
-[ ] /languages
+- [ ] /translate_file
+- [ ] /detect
+- [ ] /languages

@@ -7,5 +7,5 @@ Terminal translator(TTL). A translator for terminal use.
 ## Usage
 
 ~~~bash
-ttl [-s|-t|-h|...] [english word]
+ttl [-s|-t|-h|...] [word]
 ~~~

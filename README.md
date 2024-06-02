@@ -5,6 +5,12 @@ Terminal translator(TTL). A translator for terminal use.
 
 The translate website is too slow and inconvenient to use, so build this tool.
 
+## Platform
+
+- [x] Linux
+- [ ] Windows
+- [ ] MacOS
+
 ## Usage
 
 1. Get source code of cpr(A simple http client library)
@@ -24,14 +30,16 @@ cmake --build . --parallel
 sudo cmake --install .
 ~~~
 
-3. Clone Repository
+3. Get source code of LibreTranslate(An offline translate api provider) and deploy it via [docs](https://github.com/LibreTranslate/LibreTranslate/blob/main/README.md)
+
+4. Clone Repository
 
 ~~~bash
 git clone https://github.com/hencejacki/TerminalTranslator.git
 cd TerminalTranslator
 ~~~
 
-4. Compile
+5. Compile
 
 ~~~bash
 mkdir build && cd build
@@ -46,13 +54,14 @@ make && make install
 # source ~/.config/fish/config.fish
 ~~~
 
-5. Use
+6. Use
 
 ~~~bash
+# Set your
 ttl [-s|-t|-h|...] [word]
 ~~~
 
-6. Uninstall
+7. Uninstall
 
 ~~~bash
 make uninstall

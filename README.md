@@ -34,6 +34,11 @@ cd TerminalTranslator
 4. Compile
 
 ~~~bash
+mkdir build && cd build
+# Default build type is debug.
+# Add '-DCMAKE_BUILD_TYPE=Release' option to switch release version.
+# To change install path, add '-DCMAKE_INSTALL_PREFIX=/path/to/xxx' option.
+cmake ..
 make && make install
 # update path according to the prompt
 # source ~/.bashrc
@@ -45,6 +50,13 @@ make && make install
 
 ~~~bash
 ttl [-s|-t|-h|...] [word]
+~~~
+
+6. Uninstall
+
+~~~bash
+make uninstall
+# Remember update your shell rc file
 ~~~
 
 ## Future work

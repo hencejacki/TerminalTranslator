@@ -35,3 +35,4 @@
 ttl
 bin
 test/*.out
+build/

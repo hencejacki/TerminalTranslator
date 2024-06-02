@@ -15,10 +15,10 @@ const char *endpoint;
 int opt;
 
 // options program supports
-constexpr char options[] = "ridlkf:q:s:t:h";
+const char options[] = "ridlkf:q:s:t:h";
 
 // characters for spin progress
-constexpr char spinChars[] = "-\\|/";
+const char spinChars[] = "-\\|/";
 
 // support languages
 std::unordered_set<const char *> support_langs = {
@@ -35,7 +35,7 @@ enum class Features
 };
 
 // Default feature
-constexpr Features DEFAULT_FEATURE = Features::TRANSLATE;
+const Features DEFAULT_FEATURE = Features::TRANSLATE;
 
 std::unordered_map<Features, const char *> support_features = {
     {Features::TRANSLATE, "/translate"},
@@ -50,7 +50,9 @@ inline void errIf(bool, const char *);
 inline void usage();
 
 // translate text
-inline std::string translateText(const std::string& url, const std::string& req);
+inline std::string translateText(const std::string &url, const std::string &req);
+
+inline void flushTerminal();
 
 inline void showSpinProcess(std::future<std::string>& future_work);
 
@@ -81,8 +83,6 @@ public:
                   << std::endl;
 #endif
     }
-
-
 
 private:
     std::string q_;
@@ -250,7 +250,7 @@ int main(int argc, char *const *argv)
     }
     catch (const std::exception &e)
     {
-        std::cerr << e.what() << '\n';
+        std::cerr << e.what() << std::endl;
         exit(1);
     }
     exit(0);
@@ -271,18 +271,18 @@ inline void usage() {
               << "ttl [-s|-t|-f|-k|-h|-q] [word]"
               << '\n'
               << "Description: "
-              << '\n'
-              << "-s source language [string]"
-              << '\n'
-              << "-t target language [string]"
-              << '\n'
-              << "-f format of input [string]"
-              << '\n'
+              << "\n\t"
+              << "-s source language"
+              << "\n\t"
+              << "-t target language"
+              << "\n\t"
+              << "-f format of input"
+              << "\n\t"
               << "-k whether use api_key or not, if set, it use, in contrast, not use."
-              << '\n'
+              << "\n\t"
               << "-h help"
-              << '\n'
-              << "-q query text [string]"
+              << "\n\t"
+              << "-q query text"
               << std::endl;
 }
 
@@ -308,9 +308,19 @@ inline std::string translateText(const std::string &url, const std::string &req)
 
         // std::this_thread::sleep_for(std::chrono::seconds(3));
 
-        std::cout << std::endl;
+        flushTerminal();
 
         return response.getTranslateText();
+}
+
+inline void flushTerminal()
+{
+    std::cout << '\r' << std::flush;
+    for (int i = 0; i < 30; ++i)
+    {
+        std::cout << ' '; // Print spaces to clear the line
+    }
+    std::cout << '\r' << std::flush;
 }
 
 inline void showSpinProcess(std::future<std::string> &future_work)

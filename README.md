@@ -3,13 +3,18 @@ Terminal translator(TTL). A translator for terminal use.
 
 ## Overview
 
-The translate website is too slow and inconvenient to use, so build this tool.
+The translate website is too slow and inconvenient to use when i'm coding, so build this tool.
 
 ## Platform
 
 - [x] Linux
 - [ ] Windows
 - [ ] MacOS
+
+## Languages support
+
++ en -> zh
++ zh -> en
 
 ## Usage
 

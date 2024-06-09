@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.20)
 project(ttl)
 
 # Set property of project
-set(CMAKE_CXX_COMPILER g++)
+set(BUILD_SHARED_LIBS OFF)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(DEFAULT_BUILD_TYPE "Release")
 
@@ -27,17 +27,17 @@ include_directories(${CMAKE_SOURCE_DIR}/src/include)
 # Get source files
 file(GLOB SRC ${CMAKE_SOURCE_DIR}/src/*.cc)
 
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
-
-# Find package project required
-find_package(cpr REQUIRED)
+# Get cpr package
+include(FetchContent)
+FetchContent_Declare(cpr GIT_REPOSITORY https://github.com/libcpr/cpr.git
+                         GIT_TAG 3b15fa82ea74739b574d705fea44959b58142eb8) # Replace with your desired git commit from: https://github.com/libcpr/cpr/releases
+FetchContent_MakeAvailable(cpr)
 
 # Set executable
 add_executable(ttl ${SRC})
 
-# Link library and include header
-target_link_libraries(ttl PRIVATE ${CPR_LIBRARIES})
-target_include_directories(ttl PRIVATE ${CPR_INCLUDE_DIRS})
+# Link library
+target_link_libraries(ttl PRIVATE cpr::cpr)
 
 # Install setting
 set_target_properties(ttl PROPERTIES

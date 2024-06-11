@@ -44,7 +44,13 @@ make && make install
 3. Use
 
 ~~~bash
-# Set your custom command use alias
+# Set your endpoint env of translator server
+echo "export TTL_ENDPOINT=http://translator-ip:translator-port(often 5000)" >> ~/.bashrc
+# If use fish shell ,then
+echo "set -X TTL_ENDPOINT http://translator-ip:translator-port(often 5000)" >> ~/.config/fish/config.fish
+# Remeber perfroming "source ~/.bashrc or source ~/.config/fish/config.fish". 
+# Thus, set your custom command use alias
+# e.g. alias ttle='ttl -s en -t zh -f text -q'
 ttl [-s|-t|-h|...] [word]
 ~~~
 
@@ -52,7 +58,7 @@ ttl [-s|-t|-h|...] [word]
 
 ~~~bash
 make uninstall
-# Remember update your shell rc file
+# Remember editing and updating your shell rc file.
 ~~~
 
 ## Future work
@@ -60,3 +66,4 @@ make uninstall
 - [ ] /translate_file
 - [ ] /detect
 - [ ] /languages
+- [ ] voice support
